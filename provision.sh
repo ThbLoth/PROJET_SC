@@ -30,3 +30,6 @@ sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin 
 sudo apt update
 sudo apt-get install openssh-server -y
 sudo systemctl restart ssh
+
+#Installation Helm
+su - vagrant -c "microk8s enable helm3"
