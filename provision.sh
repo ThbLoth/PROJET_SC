@@ -9,14 +9,6 @@ sudo apt-get upgrade -y
 #Installation snapd
 sudo apt-get install snapd -y
 
-#Installation microk8s (https://microk8s.io/docs/getting-started)
-sudo snap install microk8s --classic --channel=1.27
-
-#Configuration microk8s
-sudo usermod -a -G microk8s vagrantUser
-mkdir -p ~/.kube
-sudo chown -f -R vagrantUser ~/.kube
-
 #Installation Docker
 sudo apt-get install ca-certificates curl gnupg -y
 sudo install -m 0755 -d /etc/apt/keyrings
@@ -26,10 +18,22 @@ echo "deb [arch="$(dpkg --print-architecture)" signed-by=/etc/apt/keyrings/docke
 apt-get update
 sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y
 
+#Installation minikube
+sudo apt install -y curl wget apt-transport-https
+wget https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
+sudo cp minikube-linux-amd64 /usr/local/bin/minikube
+sudo chmod +x /usr/local/bin/minikube
+sudo usermod -aG docker vagrant
+sudo minikube start --driver=docker --force
+
+#installation kubectl
+sudo apt-get update -y
+curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
+kubectl version --client
+rm kubectl
+
 #SSH
 sudo apt update
 sudo apt-get install openssh-server -y
 sudo systemctl restart ssh
-
-#Installation Helm
-su - vagrant -c "microk8s enable helm3"

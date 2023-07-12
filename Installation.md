@@ -1,8 +1,6 @@
 Liste des ressouces nécessaires :
  - Vagrant
- - microk8s (https://microk8s.io/docs/clustering)
  - minikube (voir https://cursus-janvier2020.uptime-formation.fr/03-kubernetes/12_tp5_helm_wordpress/)
- - snap
  - Docker
  - Helm (https://helm.sh/)
  - nginx (https://linuxhint.com/nginx-with-docker-compose/)
