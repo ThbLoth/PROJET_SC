@@ -24,7 +24,6 @@ wget https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd6
 sudo cp minikube-linux-amd64 /usr/local/bin/minikube
 sudo chmod +x /usr/local/bin/minikube
 sudo usermod -aG docker vagrant
-sudo minikube start --driver=docker --force
 
 #installation kubectl
 sudo apt-get update -y
